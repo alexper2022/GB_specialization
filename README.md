@@ -60,7 +60,7 @@
 
 [Скрипт MySQL по пунктам с 7 по 12 (MD)](./Task1/sql.md)
 
-[Скрипт MySQL (SQL)](./Task1/sql.md)
+[Скрипт MySQL (SQL)](./Task1/7-12.sql)
 
 
 ![База SQL](./Task1/database.jpg)
