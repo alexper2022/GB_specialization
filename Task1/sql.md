@@ -68,7 +68,7 @@ VALUES ('Снежок', '2021-04-01', 'кись кись', 1),
 ('Дизель', '2017-03-12', 'ко мне', 1),
 ('Мурзик', '2018-06-04', 'спать', 1);
 
-CREATE TABLE dogs 
+CREATE TABLE Dogs 
 (       
     Id INT AUTO_INCREMENT PRIMARY KEY, 
     Name VARCHAR(20), 
@@ -77,13 +77,13 @@ CREATE TABLE dogs
     Genus_id int,
     Foreign KEY (Genus_id) REFERENCES pets (Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO dogs (Name, Birthday, Commands, Genus_id)
+INSERT INTO Dogs (Name, Birthday, Commands, Genus_id)
 VALUES ('Барбос', '2010-09-15', 'сидеть, лежать', 2),
 ('Шарик', '2016-07-10', 'сидеть, лежать', 2),  
 ('Муха', '2017-05-05', 'сидеть, лежать', 2), 
 ('Тузик', '2020-06-16', 'сидеть, лежать', 2);
 
-CREATE TABLE hamsters 
+CREATE TABLE Hamsters 
 (       
     Id INT AUTO_INCREMENT PRIMARY KEY, 
     Name VARCHAR(20), 
@@ -92,7 +92,7 @@ CREATE TABLE hamsters
     Genus_id int,
     Foreign KEY (Genus_id) REFERENCES pets (Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO hamsters (Name, Birthday, Commands, Genus_id)
+INSERT INTO Hamsters (Name, Birthday, Commands, Genus_id)
 VALUES ('Хома', '2023-06-12', '', 3),
 ('Жирный', '2023-06-12', '', 3),  
 ('Злой', '2023-06-12', '', 3), 
@@ -163,9 +163,9 @@ UNION SELECT  Name, Birthday, Commands FROM donkeys;
 CREATE TEMPORARY TABLE animals AS 
 SELECT *, 'Лошади' as genus FROM horses
 UNION SELECT *, 'Ослы' AS genus FROM donkeys
-UNION SELECT *, 'Собаки' AS genus FROM dogs
+UNION SELECT *, 'Собаки' AS genus FROM Dogs
 UNION SELECT *, 'Кошки' AS genus FROM cats
-UNION SELECT *, 'Хомяки' AS genus FROM hamsters;
+UNION SELECT *, 'Хомяки' AS genus FROM Hamsters;
 
 CREATE TABLE young_animals AS
 SELECT Name, Birthday, Commands, genus, TIMESTAMPDIFF(MONTH, Birthday, CURDATE()) AS Age_in_month
@@ -194,12 +194,12 @@ LEFT JOIN young_animals ya ON ya.Name = c.Name
 LEFT JOIN pets ha ON ha.Id = c.Genus_id
 UNION
 SELECT d.Name, d.Birthday, d.Commands, ha.Genus_name, ya.Age_in_month 
-FROM dogs d
+FROM Dogs d
 LEFT JOIN young_animals ya ON ya.Name = d.Name
 LEFT JOIN pets ha ON ha.Id = d.Genus_id
 UNION
 SELECT hm.Name, hm.Birthday, hm.Commands, ha.Genus_name, ya.Age_in_month 
-FROM hamsters hm
+FROM Hamsters hm
 LEFT JOIN young_animals ya ON ya.Name = hm.Name
 LEFT JOIN pets ha ON ha.Id = hm.Genus_id;
 ```
