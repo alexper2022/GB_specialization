@@ -1,87 +1,278 @@
 package Task2.sql;
 
-import Task2.models.Pets;
-import org.sqlite.JDBC;
+import Task2.models.*;
 
 import java.sql.*;
-import java.util.*;
+
+
 public class InteractionSql {
 
 	// Константа, в которой хранится адрес подключения
-	private static final String CON_STR = "jdbc:sqlite:./Task2/Pets.sqlite";
 
-	// Используем шаблон одиночка, чтобы не плодить множество
-	// экземпляров класса DbHandler
-	private static InteractionSql instance = null;
-
-	public static synchronized InteractionSql getInstance() throws SQLException {
-		if (instance == null)
-			instance = new InteractionSql();
-		return instance;
-	}
-
-	// Объект, в котором будет храниться соединение с БД
-	private Connection connection;
-
-	private InteractionSql() throws SQLException {
-		// Регистрируем драйвер, с которым будем работать
-		// в нашем случае Sqlite
-		DriverManager.registerDriver(new JDBC());
-		// Выполняем подключение к базе данных
-		this.connection = DriverManager.getConnection(CON_STR);
-	}
-
-	public List<Pets> getAllPets() {
-
-		// Statement используется для того, чтобы выполнить sql-запрос
-		try (Statement statement = this.connection.createStatement()) {
-			// В данный список будем загружать наши продукты, полученные из БД
-			List<Pets> pets = new ArrayList<Pets>();
-//			// В resultSet будет храниться результат нашего запроса,
-//			// который выполняется командой statement.executeQuery()
-//			ResultSet resultSet = statement.executeQuery("SELECT id, good, price, category_name FROM Petss");
-//			// Проходимся по нашему resultSet и заносим данные в Pets
-//			while (resultSet.next()) {
-//				pets.add(new Pets(resultSet.getInt("id"),
-//						resultSet.getString("good"),
-//						resultSet.getDouble("price"),
-//						resultSet.getString("category_name")));
-//			}
-//			// Возвращаем наш список
-			return pets;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			// Если произошла ошибка - возвращаем пустую коллекцию
-			return Collections.emptyList();
+	public static void viewCats() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Кошки =-");
+			// В resultSet будет храниться результат запроса командой statement.executeQuery()
+			resultSet = statement.executeQuery("SELECT * FROM cats");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n", resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Birthday"), resultSet.getString("Gender"), resultSet.getString("Commands"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
-	// Добавление продукта в БД
-//	public void addPets(Pets Pets) {
-//		// Создадим подготовленное выражение, чтобы избежать SQL-инъекций
-//		try (PreparedStatement statement = this.connection.prepareStatement(
-//				"INSERT INTO Petss(`good`, `price`, `category_name`) " +
-//						"VALUES(?, ?, ?)")) {
-//			statement.setObject(1, Pets.good);
-//			statement.setObject(2, Pets.price);
-//			statement.setObject(3, Pets.category_name);
-//			// Выполняем запрос
-//			statement.execute();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public static void viewDogs() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Собаки =-");
+			resultSet = statement.executeQuery("SELECT * FROM dogs");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n", resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Birthday"), resultSet.getString("Gender"), resultSet.getString("Commands"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-	// Удаление продукта по id
-	public void deletePets(int id) {
-		try (PreparedStatement statement = this.connection.prepareStatement(
-				"DELETE FROM Petss WHERE id = ?")) {
-			statement.setObject(1, id);
-			// Выполняем запрос
-			statement.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+	public static void viewHamsters() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Хомяки =-");
+			resultSet = statement.executeQuery("SELECT * FROM hamsters");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n", resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Birthday"), resultSet.getString("Gender"), resultSet.getString("Commands"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void viewHorses() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Лошади =-");
+			resultSet = statement.executeQuery("SELECT * FROM horses");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n", resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Birthday"), resultSet.getString("Gender"), resultSet.getString("Commands"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void viewDonkeys() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Ослы =-");
+			resultSet = statement.executeQuery("SELECT * FROM donkeys");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n", resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Birthday"), resultSet.getString("Gender"), resultSet.getString("Commands"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void viewCamels() throws Exception {
+		try {
+			ResultSet resultSet;
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");
+			Statement statement = connection.createStatement();
+			System.out.println("\n-= Верблюды =-");
+			resultSet = statement.executeQuery("SELECT * FROM camels");
+			// Проходимся по нашему resultSet и выводим на экран
+			while (resultSet.next()) {
+				System.out.printf("№ %d - Имя: %s, д/р: %s, Пол: %s, Понимает команды: %s \n",
+						resultSet.getInt("Id"),
+						resultSet.getString("Name"),
+						resultSet.getString("Birthday"),
+						resultSet.getString("Gender"),
+						resultSet.getString("Commands"));
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	// Добавление в DB
+	public static void addCatInDB(String tableName, Cats animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`)" +
+							" VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void addDogInDB(String tableName, Dogs animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					tableName, animal.getName(),
+					animal.getBirthday(),
+					animal.getComands(),
+					animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void addHamsterInDB(String tableName, Hamsters animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void addHorseInDB(String tableName, Horses animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void addDonkeyInDB(String tableName, Donkeys animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void addCamelInDB(String tableName, Camels animal) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.add();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+
+	// Удаление из DB
+	public static void delAnimalInDB(String tableName, int id) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("DELETE FROM %s WHERE `Id` = %d;", tableName, id);
+			statement.execute(sqlQuery);
+			sqlQuery = "UPDATE counter SET value = value - 1 WHERE id = 1";
+			statement.execute(sqlQuery);
+			Counter.del();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	public static void addComandForAnimal(String command, String table, int id) {
+
+	}
+
+	public static void writCounterInDB(int counter) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			Statement statement = connection.createStatement();
+			String sqlQuery = String.format("UPDATE counter SET value = %d WHERE id = 1", counter);
+			statement.execute(sqlQuery);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void readCounterInDB() throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			ResultSet resultSet;
+			Statement statement = connection.createStatement();
+			resultSet = statement.executeQuery("SELECT value FROM counter");
+			while (resultSet.next()) {
+				Counter.setCounter(resultSet.getInt("value"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	public static void addCommandAnimalInDB(String tableName, int id, String addCommand) throws Exception {
+		Class.forName("org.sqlite.JDBC");
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+			ResultSet resultSet;
+			Statement statement = connection.createStatement();
+			String result = String.format("SELECT Commands FROM %s WHERE Id = %d", tableName, id);
+			resultSet = statement.executeQuery(result);
+			String command;
+			while (resultSet.next()) {
+				command = (resultSet.getString("Commands"));
+				String newCommand = command + ", " + addCommand;
+				String sqlQuery = String.format("UPDATE %s SET Commands = '%s' WHERE id = %d", tableName, newCommand, id);
+				statement.execute(sqlQuery);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }

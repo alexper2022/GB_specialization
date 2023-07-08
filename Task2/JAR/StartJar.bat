@@ -1,0 +1,1 @@
+java -cp Task2.jar Task2.Main
