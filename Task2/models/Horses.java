@@ -1,16 +1,15 @@
 package Task2.models;
 
-import java.sql.*;
-
-
 public class Horses extends PackAnimals {
 	public Horses(String name, String birthday, String comands, int gender) {
 		super(name, birthday, comands, gender);
 	}
+
 	@Override
 	public String getName() {
 		return super.getName();
 	}
+
 
 	@Override
 	public void setName(String name) {

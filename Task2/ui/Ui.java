@@ -48,7 +48,7 @@ public class Ui {
 					if (counterAnimal > 0) {
 						AddCommandAnimal.chooseAddCommandAnAnimal();
 					} else {
-						System.out.println("\n\nБаза животных пуста!!!\nДобавлять команду нельзя!!!\n");
+						System.out.println("\n\nБаза животных пуста!!!\nДобавить команду нельзя!!!\n");
 					}
 					System.out.print("Для продолжения нажмите Enter...");
 					userIn().nextLine();
@@ -67,7 +67,7 @@ public class Ui {
 					runApp();
 				case (0):
 					System.out.println("\n-=< Выйти из программы >=-\n");
-					System.out.println("Спасибо, что пользуетесь нашей программой!");
+					System.out.println("Спасибо, что воспользовались этой программой!");
 					userIn().close();
 					System.exit(0);
 				default:

@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="zoo" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Task2.Main" />
+    <module name="Task2" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

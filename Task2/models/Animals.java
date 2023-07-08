@@ -1,9 +1,6 @@
 package Task2.models;
 
 
-import java.sql.*;
-
-
 public abstract class Animals {
 	private int id;
 	private String name;

@@ -2,7 +2,10 @@ package Task2.sql;
 
 import Task2.models.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class InteractionSql {
@@ -119,14 +122,14 @@ public class InteractionSql {
 	}
 
 	// Добавление в DB
-	public static void addCatInDB(String tableName, Cats animal) throws ClassNotFoundException {
+	public static void addCatInDB(Cats animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
 			String sqlQuery = String.format(
 					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`)" +
 							" VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
-					tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+					"Cats", animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
 			statement.execute(sqlQuery);
 			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
 			statement.execute(sqlQuery);
@@ -136,12 +139,13 @@ public class InteractionSql {
 		}
 	}
 
-	public static void addDogInDB(String tableName, Dogs animal) throws ClassNotFoundException {
+	public static void addDogInDB(Dogs animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
-			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
-					tableName, animal.getName(),
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					"Dogs", animal.getName(),
 					animal.getBirthday(),
 					animal.getComands(),
 					animal.getGender());
@@ -154,11 +158,17 @@ public class InteractionSql {
 		}
 	}
 
-	public static void addHamsterInDB(String tableName, Hamsters animal) throws ClassNotFoundException {
+	public static void addHamsterInDB(Hamsters animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
-			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					"Hamsters",
+					animal.getName(),
+					animal.getBirthday(),
+					animal.getComands(),
+					animal.getGender());
 			statement.execute(sqlQuery);
 			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
 			statement.execute(sqlQuery);
@@ -168,11 +178,18 @@ public class InteractionSql {
 		}
 	}
 
-	public static void addHorseInDB(String tableName, Horses animal) throws ClassNotFoundException {
+
+	public static void addHorseInDB(Horses animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
-			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					"Horses",
+					animal.getName(),
+					animal.getBirthday(),
+					animal.getComands(),
+					animal.getGender());
 			statement.execute(sqlQuery);
 			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
 			statement.execute(sqlQuery);
@@ -182,11 +199,17 @@ public class InteractionSql {
 		}
 	}
 
-	public static void addDonkeyInDB(String tableName, Donkeys animal) throws ClassNotFoundException {
+	public static void addDonkeyInDB(Donkeys animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
-			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					"Donkeys",
+					animal.getName(),
+					animal.getBirthday(),
+					animal.getComands(),
+					animal.getGender());
 			statement.execute(sqlQuery);
 			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
 			statement.execute(sqlQuery);
@@ -196,11 +219,17 @@ public class InteractionSql {
 		}
 	}
 
-	public static void addCamelInDB(String tableName, Camels animal) throws ClassNotFoundException {
+	public static void addCamelInDB(Camels animal) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
-			String sqlQuery = String.format("INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)", tableName, animal.getName(), animal.getBirthday(), animal.getComands(), animal.getGender());
+			String sqlQuery = String.format(
+					"INSERT INTO %s (`Name`, `Birthday`, `Commands`, `Gender`, `Genus_id`) VALUES (\"%s\", \"%s\", \"%s\", \"%c\", 1)",
+					"Camels",
+					animal.getName(),
+					animal.getBirthday(),
+					animal.getComands(),
+					animal.getGender());
 			statement.execute(sqlQuery);
 			sqlQuery = "UPDATE counter SET value = value + 1 WHERE id = 1";
 			statement.execute(sqlQuery);
@@ -214,7 +243,7 @@ public class InteractionSql {
 	// Удаление из DB
 	public static void delAnimalInDB(String tableName, int id) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
 			String sqlQuery = String.format("DELETE FROM %s WHERE `Id` = %d;", tableName, id);
 			statement.execute(sqlQuery);
@@ -227,13 +256,10 @@ public class InteractionSql {
 
 	}
 
-	public static void addComandForAnimal(String command, String table, int id) {
 
-	}
-
-	public static void writCounterInDB(int counter) throws ClassNotFoundException {
+	public static void writeCounterInDB(int counter) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			Statement statement = connection.createStatement();
 			String sqlQuery = String.format("UPDATE counter SET value = %d WHERE id = 1", counter);
 			statement.execute(sqlQuery);
@@ -244,7 +270,7 @@ public class InteractionSql {
 
 	public static void readCounterInDB() throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			ResultSet resultSet;
 			Statement statement = connection.createStatement();
 			resultSet = statement.executeQuery("SELECT value FROM counter");
@@ -259,7 +285,7 @@ public class InteractionSql {
 
 	public static void addCommandAnimalInDB(String tableName, int id, String addCommand) throws Exception {
 		Class.forName("org.sqlite.JDBC");
-		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db");) {
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:animals.db")) {
 			ResultSet resultSet;
 			Statement statement = connection.createStatement();
 			String result = String.format("SELECT Commands FROM %s WHERE Id = %d", tableName, id);

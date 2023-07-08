@@ -1,6 +1,5 @@
 package Task2.ui;
 
-import Task2.models.*;
 import Task2.services.UserInput;
 import Task2.sql.InteractionSql;
 
@@ -86,6 +85,7 @@ public class DelAnimal {
 		int id = UserInput.userIn().nextInt();
 		InteractionSql.delAnimalInDB("hamsters", id);
 	}
+
 
 	private static void delHorse() throws Exception {
 		InteractionSql.viewHorses();

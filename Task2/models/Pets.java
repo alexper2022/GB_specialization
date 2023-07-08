@@ -1,8 +1,5 @@
 package Task2.models;
 
-import java.sql.*;
-
-
 public class Pets extends Animals {
 	public Pets(String name, String birthday, String comands, int gender) {
 		super(name, birthday, comands, gender);

@@ -73,17 +73,18 @@ public class AddAnimal {
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Cats cat = new Cats(name, birthday, "", 'м');
-			InteractionSql.addCatInDB("cats", cat);
+			InteractionSql.addCatInDB(cat);
 		} else if (input.contains("ж")) {
 			Cats cat = new Cats(name, birthday, "", 'ж');
-			InteractionSql.addCatInDB("cats", cat);
-		}else{
+			InteractionSql.addCatInDB(cat);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addCat();
 		}
 	}
+
 	private static void addDog() throws ClassNotFoundException {
 		System.out.print("Введите имя животного: ");
 		String name = userIn().next();
@@ -91,17 +92,18 @@ public class AddAnimal {
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Dogs dog = new Dogs(name, birthday, "", 'м');
-			InteractionSql.addDogInDB("dogs", dog);
+			InteractionSql.addDogInDB(dog);
 		} else if (input.contains("ж")) {
 			Dogs dog = new Dogs(name, birthday, "", 'ж');
-			InteractionSql.addDogInDB("dogs", dog);
-		}else{
+			InteractionSql.addDogInDB(dog);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addDog();
 		}
 	}
+
 	private static void addHamster() throws ClassNotFoundException {
 		System.out.print("Введите имя животного: ");
 		String name = userIn().nextLine();
@@ -109,67 +111,71 @@ public class AddAnimal {
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Hamsters hamster = new Hamsters(name, birthday, "", 'м');
-			InteractionSql.addHamsterInDB("hamsters", hamster);
+			InteractionSql.addHamsterInDB(hamster);
 		} else if (input.contains("ж")) {
 			Hamsters hamster = new Hamsters(name, birthday, "", 'ж');
-			InteractionSql.addHamsterInDB("hamsters", hamster);
-		}else{
+			InteractionSql.addHamsterInDB(hamster);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addHamster();
 		}
 	}
+
 	private static void addHorse() throws ClassNotFoundException {
 		System.out.print("Введите имя животного: ");
-		String name = (String) userIn().nextLine();
+		String name = userIn().nextLine();
 		System.out.print("Введите день рождения\n в формате гггг-мм-дд (год-месяц-день): ");
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Horses horse = new Horses(name, birthday, "", 'м');
-			InteractionSql.addHorseInDB("horses", horse);
+			InteractionSql.addHorseInDB(horse);
 		} else if (input.contains("ж")) {
 			Horses horse = new Horses(name, birthday, "", 'ж');
-			InteractionSql.addHorseInDB("horses", horse);
-		}else{
+			InteractionSql.addHorseInDB(horse);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addHorse();
 		}
 	}
+
 	private static void addDonkey() throws ClassNotFoundException {
 		System.out.print("Введите имя животного: ");
-		String name = (String) userIn().nextLine();
+		String name = userIn().nextLine();
 		System.out.print("Введите день рождения\n в формате гггг-мм-дд (год-месяц-день): ");
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Donkeys donkey = new Donkeys(name, birthday, "", 'м');
-			InteractionSql.addDonkeyInDB("donkeys", donkey);
+			InteractionSql.addDonkeyInDB(donkey);
 		} else if (input.contains("ж")) {
 			Donkeys donkey = new Donkeys(name, birthday, "", 'ж');
-			InteractionSql.addDonkeyInDB("donkeys", donkey);
-		}else{
+			InteractionSql.addDonkeyInDB(donkey);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addDonkey();
 		}
 	}
+
+
 	private static void addCamel() throws ClassNotFoundException {
 		System.out.print("Введите имя животного: ");
-		String name = (String) userIn().nextLine();
+		String name = userIn().nextLine();
 		System.out.print("Введите день рождения\n в формате гггг-мм-дд (год-месяц-день): ");
 		String birthday = userIn().nextLine();
 		System.out.print("Введите пол животного (м или ж): ");
 		String input = userIn().nextLine();
-		if (input.contains("м")){
+		if (input.contains("м")) {
 			Camels camel = new Camels(name, birthday, "", 'м');
-			InteractionSql.addCamelInDB("camels", camel);
+			InteractionSql.addCamelInDB(camel);
 		} else if (input.contains("ж")) {
 			Camels camel = new Camels(name, birthday, "", 'ж');
-			InteractionSql.addCamelInDB("camels", camel);
-		}else{
+			InteractionSql.addCamelInDB(camel);
+		} else {
 			System.out.println("Вы неправильно ввели пол.");
 			addCamel();
 		}
