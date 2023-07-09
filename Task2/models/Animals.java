@@ -2,7 +2,6 @@ package Task2.models;
 
 
 public abstract class Animals {
-	private int id;
 	private String name;
 	private String comands;
 	private String birthday;
